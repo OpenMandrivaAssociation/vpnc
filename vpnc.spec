@@ -31,7 +31,6 @@ perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/%{name}/|' vpnc-script
 perl -pi -e 's|/var/run/vpnc/pid|/var/run/vpnc.pid|' config.c vpnc-disconnect
 
 %build
-export CFLAGS="%{optflags}"
 %make
 
 
