@@ -1,17 +1,17 @@
 %define name    vpnc
-%define version 0.4.0
-%define release %mkrel 2
+%define version 0.5.1
+%define release %mkrel 1
 
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
 Summary:        A free vpn client for the Cisco 3000 concentrators
-Source0:        %{name}-%{version}.tar.bz2
-Source2:    	%{name}.bash-completion
-Patch1:		    vpnc-0.4.0-resolvconf.patch
 License:        GPL
 Group:          Networking/Other
 Url:            http://www.unix-ag.uni-kl.de/~massar/vpnc/
+Source0:        http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
+Source2:    	%{name}.bash-completion
+Patch1:		    vpnc-0.4.0-resolvconf.patch
 Requires:       iproute2
 Requires:       initscripts >= 8.48-4mdv2007.1
 BuildRequires:  libgcrypt-devel
