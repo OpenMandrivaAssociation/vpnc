@@ -14,7 +14,6 @@ Source2:    	%{name}.bash-completion
 Requires:       iproute2
 BuildRequires:  libgcrypt-devel
 Provides: 	    kvpnc-backend
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
 A free vpn client for cisco3000 VPN Concentrator, completly in userspace,
