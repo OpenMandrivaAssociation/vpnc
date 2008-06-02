@@ -24,7 +24,7 @@ or as module
 %prep
 %setup -q
 
-perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/%{name}/|' vpnc-script
+perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/lib/%{name}/|' vpnc-script
 perl -pi -e 's|/var/run/vpnc/pid|/var/run/vpnc.pid|' config.c vpnc-disconnect
 
 %build
@@ -38,7 +38,7 @@ rm -rf %{buildroot}
 install -d -m 755 %{buildroot}%{_sbindir}
 install -d -m 755 %{buildroot}%{_bindir}
 install -d -m 755 %{buildroot}%{_mandir}/man8/
-install -d -m 755 %{buildroot}%{_localstatedir}/%{name}
+install -d -m 755 %{buildroot}%{_localstatedir}/lib/%{name}
 install -m 755 {vpnc,vpnc-script,vpnc-disconnect} %{buildroot}%{_sbindir}
 install -m 755 pcf2vpnc %{buildroot}%{_bindir}
 install -m 755 vpnc.8 %{buildroot}%{_mandir}/man8
@@ -58,7 +58,7 @@ rm -rf %{buildroot}
 %{_mandir}/man8/vpnc.8*
 %{_sbindir}/*
 %{_bindir}/*
-%{_localstatedir}/%{name}
+%{_localstatedir}/lib/%{name}
 %{_sysconfdir}/%{name}
 %{_sysconfdir}/bash_completion.d/%{name}
 
