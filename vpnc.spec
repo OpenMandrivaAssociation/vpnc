@@ -1,6 +1,6 @@
 %define name    vpnc
 %define version 0.5.1
-%define release %mkrel 2
+%define release %mkrel 3
 
 Name:           %{name}
 Version:        %{version}
@@ -37,11 +37,14 @@ perl -pi -e s/1412/1000/ vpnc-script
 rm -rf %{buildroot}
 install -d -m 755 %{buildroot}%{_sbindir}
 install -d -m 755 %{buildroot}%{_bindir}
-install -d -m 755 %{buildroot}%{_mandir}/man8/
+install -d -m 755 %{buildroot}%{_mandir}/man8
+install -d -m 755 %{buildroot}%{_mandir}/man1
 install -d -m 755 %{buildroot}%{_localstatedir}/lib/%{name}
-install -m 755 {vpnc,vpnc-script,vpnc-disconnect} %{buildroot}%{_sbindir}
+install -m 755 {vpnc,vpnc-script,vpnc-disconnect,cisco-decrypt} \
+    %{buildroot}%{_sbindir}
 install -m 755 pcf2vpnc %{buildroot}%{_bindir}
 install -m 755 vpnc.8 %{buildroot}%{_mandir}/man8
+install -m 755 cisco-decrypt.1 %{buildroot}%{_mandir}/man1
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 ln -s %{_sbindir}/vpnc-script %{buildroot}%{_sysconfdir}/%{name}/vpnc-script
 
@@ -56,10 +59,10 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc COPYING README TODO VERSION
 %{_mandir}/man8/vpnc.8*
+%{_mandir}/man1/cisco-decrypt.1*
 %{_sbindir}/*
 %{_bindir}/*
 %{_localstatedir}/lib/%{name}
 %{_sysconfdir}/%{name}
 %{_sysconfdir}/bash_completion.d/%{name}
-
 
