@@ -30,6 +30,7 @@ perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/lib/%{name}/|' vpnc-script
 perl -pi -e 's|/var/run/vpnc/pid|/var/run/vpnc.pid|' config.c vpnc-disconnect
 
 %build
+%serverbuild
 %make CFLAGS="%optflags" LFLAGS="%{?ldflags}"
 
 # lower MTU, some vpn concentrators have MTU problems
