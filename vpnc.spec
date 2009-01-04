@@ -1,16 +1,17 @@
 %define name    vpnc
-%define version 0.5.1
-%define release %mkrel 3
+%define version 0.5.3
+%define release %mkrel 1
 
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
 Summary:        A free vpn client for the Cisco 3000 concentrators
-License:        GPL
+License:        GPLv2+
 Group:          Networking/Other
 Url:            http://www.unix-ag.uni-kl.de/~massar/vpnc/
 Source0:        http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
 Source2:    	%{name}.bash-completion
+Patch0:		vpnc-0.5.3-linkage.patch
 Requires:       iproute2
 BuildRequires:  libgcrypt-devel
 Provides: 	    kvpnc-backend
@@ -23,12 +24,13 @@ or as module
 
 %prep
 %setup -q
+%patch0 -p0
 
 perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/lib/%{name}/|' vpnc-script
 perl -pi -e 's|/var/run/vpnc/pid|/var/run/vpnc.pid|' config.c vpnc-disconnect
 
 %build
-%make
+%make CFLAGS="%optflags" LFLAGS="%{?ldflags}"
 
 # lower MTU, some vpn concentrators have MTU problems
 perl -pi -e s/1412/1000/ vpnc-script
