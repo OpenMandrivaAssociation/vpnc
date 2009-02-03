@@ -1,6 +1,6 @@
 %define name    vpnc
 %define version 0.5.3
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:           %{name}
 Version:        %{version}
@@ -10,7 +10,6 @@ License:        GPLv2+
 Group:          Networking/Other
 Url:            http://www.unix-ag.uni-kl.de/~massar/vpnc/
 Source0:        http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
-Source2:    	%{name}.bash-completion
 Patch0:		vpnc-0.5.3-linkage.patch
 Requires:       iproute2
 BuildRequires:  libgcrypt-devel
@@ -51,9 +50,6 @@ install -m 755 cisco-decrypt.1 %{buildroot}%{_mandir}/man1
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 ln -s %{_sbindir}/vpnc-script %{buildroot}%{_sysconfdir}/%{name}/vpnc-script
 
-# bash completion
-install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
-install -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 %clean
 rm -rf %{buildroot}
@@ -67,5 +63,4 @@ rm -rf %{buildroot}
 %{_bindir}/*
 %{_localstatedir}/lib/%{name}
 %{_sysconfdir}/%{name}
-%{_sysconfdir}/bash_completion.d/%{name}
 
