@@ -1,6 +1,6 @@
 %define name    vpnc
 %define version 0.5.3
-%define release 17
+%define release 18
 
 Name:           %{name}
 Version:        %{version}
