@@ -1,19 +1,15 @@
-%define name    vpnc
-%define version 0.5.3
-%define release 21
-
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
-Summary:        A free vpn client for the Cisco 3000 concentrators
-License:        GPLv2+
-Group:          Networking/Other
-Url:            http://www.unix-ag.uni-kl.de/~massar/vpnc/
-Source0:        http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
+Name:		vpnc
+Version:	0.5.3
+Release:	22
+Summary:	A free vpn client for the Cisco 3000 concentrators
+License:	GPLv2+
+Group:		Networking/Other
+Url:		http://www.unix-ag.uni-kl.de/~massar/vpnc/
+Source0:	http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
 Patch0:		vpnc-0.5.3-linkage.patch
-Requires:       iproute2
-BuildRequires:  libgcrypt-devel
-Provides: 	    kvpnc-backend
+Requires:	iproute2
+BuildRequires:	libgcrypt-devel
+Provides:	kvpnc-backend
 
 %description
 A free vpn client for cisco3000 VPN Concentrator, completly in userspace,
