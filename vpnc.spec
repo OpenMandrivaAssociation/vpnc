@@ -1,6 +1,6 @@
 Name:		vpnc
 Version:	0.5.3
-Release:	22
+Release:	23
 Summary:	A free vpn client for the Cisco 3000 concentrators
 License:	GPLv2+
 Group:		Networking/Other
