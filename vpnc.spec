@@ -1,6 +1,6 @@
 Name:		vpnc
 Version:	0.5.3
-Release:	24
+Release:	25
 Summary:	A free vpn client for the Cisco 3000 concentrators
 License:	GPLv2+
 Group:		Networking/Other
@@ -15,6 +15,15 @@ Provides:	kvpnc-backend
 A free vpn client for cisco3000 VPN Concentrator, completly in userspace,
 require Universal TUN/TAP device driver support compiled in the kernel 
 or as module
+
+%package pcf2vpnc
+Summary:	Conversion tool for VPN-config files to vpnc-format
+Group:		Networking/Other
+Requires:	%{name} = %{EVRD}
+Obsoletes:	%{name} < 0.5.3-25
+
+%description pcf2vpnc
+This tool converts VPN-config files from pcf to vpnc-format
 
 %prep
 %setup -q
@@ -50,6 +59,8 @@ ln -s %{_sbindir}/vpnc-script %{buildroot}%{_sysconfdir}/%{name}/vpnc-script
 %{_mandir}/man8/vpnc.8*
 %{_mandir}/man1/cisco-decrypt.1*
 %{_sbindir}/*
-%{_bindir}/*
 %{_localstatedir}/lib/%{name}
 %{_sysconfdir}/%{name}
+
+%files pcf2vpnc
+%{_bindir}/pcf2vpnc
