@@ -1,14 +1,16 @@
+Summary:	A free vpn client for the Cisco 3000 concentrators
 Name:		vpnc
 Version:	0.5.3
-Release:	25
-Summary:	A free vpn client for the Cisco 3000 concentrators
+Release:	26
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.unix-ag.uni-kl.de/~massar/vpnc/
 Source0:	http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
+# taken from https://gitlab.com/openconnect/vpnc-scripts
+Source1:	vpnc-script
 Patch0:		vpnc-0.5.3-linkage.patch
 Requires:	iproute2
-BuildRequires:	libgcrypt-devel
+BuildRequires:	pkgconfig(libgcrypt)
 Provides:	kvpnc-backend
 
 %description
@@ -33,8 +35,7 @@ perl -pi -e 's|/var/run/vpnc/|%{_localstatedir}/lib/%{name}/|' vpnc-script
 perl -pi -e 's|/var/run/vpnc/pid|/var/run/vpnc.pid|' config.c vpnc-disconnect
 
 %build
-%serverbuild
-%make CC=%{__cc} CFLAGS="%optflags" LFLAGS="%{?ldflags}"
+%make CC=%{__cc} CFLAGS="%{optflags}" LFLAGS="%{build_ldflags}"
 
 # lower MTU, some vpn concentrators have MTU problems
 perl -pi -e s/1412/1000/ vpnc-script
@@ -46,12 +47,13 @@ install -d -m 755 %{buildroot}%{_bindir}
 install -d -m 755 %{buildroot}%{_mandir}/man8
 install -d -m 755 %{buildroot}%{_mandir}/man1
 install -d -m 755 %{buildroot}%{_localstatedir}/lib/%{name}
-install -m 755 {vpnc,vpnc-script,vpnc-disconnect,cisco-decrypt} \
+install -m 755 {vpnc,vpnc-disconnect,cisco-decrypt} \
     %{buildroot}%{_sbindir}
 install -m 755 pcf2vpnc %{buildroot}%{_bindir}
 install -m 755 vpnc.8 %{buildroot}%{_mandir}/man8
 install -m 755 cisco-decrypt.1 %{buildroot}%{_mandir}/man1
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
+install -m 755 %{SOURCE1} %{buildroot}%{_sbindir}/vpnc-script
 ln -s %{_sbindir}/vpnc-script %{buildroot}%{_sysconfdir}/%{name}/vpnc-script
 
 %files
