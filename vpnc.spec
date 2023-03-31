@@ -1,7 +1,7 @@
 Summary:	A free vpn client for the Cisco 3000 concentrators
 Name:		vpnc
 Version:	0.5.3
-Release:	26
+Release:	27
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.unix-ag.uni-kl.de/~massar/vpnc/
