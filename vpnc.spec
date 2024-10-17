@@ -4,7 +4,7 @@ Version:	0.5.3
 Release:	27
 License:	GPLv2+
 Group:		Networking/Other
-Url:		http://www.unix-ag.uni-kl.de/~massar/vpnc/
+Url:		https://www.unix-ag.uni-kl.de/~massar/vpnc/
 Source0:	http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
 # taken from https://gitlab.com/openconnect/vpnc-scripts
 Source1:	vpnc-script
