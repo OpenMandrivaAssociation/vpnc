@@ -10,6 +10,7 @@ Source0:	http://www.unix-ag.uni-kl.de/~massar/vpnc/%{name}-%{version}.tar.gz
 Source1:	vpnc-script
 Patch0:		vpnc-0.5.3-linkage.patch
 Requires:	iproute2
+BuildRequires:	make
 BuildRequires:	pkgconfig(libgcrypt)
 Provides:	kvpnc-backend
 
